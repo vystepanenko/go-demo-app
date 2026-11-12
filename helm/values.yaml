@@ -52,6 +52,9 @@ ns:
   enable: false
 api-gateway:
   image:
-    tag: 0.51.2
+    # 0.x images use the Docker schema v1 manifest, which containerd 2.1+ can no longer pull
+    tag: 1.14.4
   service:
     type: NodePort
+    # Ambassador 1.x listens on 8080 instead of 80
+    port: 8080
