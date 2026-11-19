@@ -82,14 +82,14 @@ func main() {
 		for {
 			select {
 			case <-time.After(time.Second * 1):
-			//	ts := time.Since(t0)
-			//	log.Println("[", Role, "] time: ", ts, " requests: ", REQ0, " rps: ", (REQ0-REQ1)/1, " throughput:", float64(REQ0)/ts.Seconds())
+				//	ts := time.Since(t0)
+				//	log.Println("[", Role, "] time: ", ts, " requests: ", REQ0, " rps: ", (REQ0-REQ1)/1, " throughput:", float64(REQ0)/ts.Seconds())
 				REQ1 = REQ0
 			}
 		}
 	}()
 
-	Environment = fmt.Sprintf("%s-%s:%s", *AppName, Role, Version)
+	Environment = fmt.Sprintf("%s-%s Version: %s", *AppName, Role, Version)
 	// Connect Options.
 
 	log.Printf("Listening on [%s]: %s port: %s", *AppRole, Environment, *AppPort)

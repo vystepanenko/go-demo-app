@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-v1
+  labels:
+    app: demo
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: demo
+        version: v1
+    spec:
+      containers:
+        - name: app
+          image: us-central1-docker.pkg.dev/go-demo-uptime-module-5/demo/go-demo-app:v1.0.0
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /version
+              port: 8080
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
